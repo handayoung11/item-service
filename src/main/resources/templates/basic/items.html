@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<!-- thymeleaf ns 설정 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!-- thymeleaf를 통해 경로 설정-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>상품 목록</h2></div>
+    <div class="row">
+        <div class="col">
+            <!-- thymeleaf를 통해 onclick 속성 설정-->
+            <button class="btn btn-primary float-end"
+                    th:onclick="|location.href='@{/basic/items/add}'|"
+                    type="button">상품
+                등록
+            </button>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- thymeleaf를 통해 동적으로 아이템 목록 렌더링-->
+            <tr th:each="item : ${items}">
+                <td><a th:href="@{/basic/items/__${item.id}__}" th:text="${item.id}">item id</a></td>
+                <td><a th:href="@{|/basic/items/${item.id}|}" th:text="${item.itemName}">item name</a></td>
+                <td th:text="${item.price}">item price</td>
+                <td th:text="${item.quantity}">item quantity</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
