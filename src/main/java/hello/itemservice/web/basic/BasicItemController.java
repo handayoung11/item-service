@@ -48,6 +48,16 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    /*
+     * @ModelAttribute("item") Item item;
+     * -> model.addAttribute("item", item); 자동 추가
+     */
+//    @PostMapping("/add")
+    public String addItemV2(@ModelAttribute("item") Item item) {
+        itemRepo.save(item);
+        return "basic/item";
+    }
+
     @PostConstruct
     public void init() {
         itemRepo.save(new Item("itemA", 10000, 10));
