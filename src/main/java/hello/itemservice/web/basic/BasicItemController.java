@@ -70,6 +70,13 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepo.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
     @PostConstruct
     public void init() {
         itemRepo.save(new Item("itemA", 10000, 10));
