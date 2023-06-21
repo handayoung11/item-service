@@ -2,6 +2,7 @@ package hello.itemservice.web.basic;
 
 import hello.itemservice.domain.Item;
 import hello.itemservice.domain.ItemRepository;
+import hello.itemservice.domain.ItemUpdateDTO;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -75,6 +76,12 @@ public class BasicItemController {
         Item item = itemRepo.findById(itemId);
         model.addAttribute("item", item);
         return "basic/editForm";
+    }
+
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable Long itemId, @ModelAttribute ItemUpdateDTO item) {
+        itemRepo.update(itemId, item);
+        return "redirect:/basic/items/{itemId}";
     }
 
     @PostConstruct
