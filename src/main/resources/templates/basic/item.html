@@ -14,6 +14,10 @@
     <div class="py-5 text-center">
         <h2>상품 상세</h2>
     </div>
+
+    <!--status query param이 true인 경우 저장 완료! 문구를 보여준다-->
+    <h2 th:if="${param.status}" th:text="'저장 완료!'"></h2>
+
     <!--th:value를 통해 input tag value 지정-->
     <div>
         <label for="itemId">상품 ID</label>
